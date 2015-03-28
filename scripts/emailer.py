@@ -35,6 +35,6 @@ with open('../sample-schedule.json') as data_file:
     f = data_file
     data = json.load(data_file)[0]
 
-alert = MakeEmail('smtp.gmail.com',data['email'],'remindify.bot@gmail.com','def_hacks()','ALERT',data['message'])
+alert = MakeEmail('smtp.gmail.com',data['email'],'remindify.bot@gmail.com','def_hacks()','Clyde Sinclair Says...',data['message'])
 
 alert.send_email()
