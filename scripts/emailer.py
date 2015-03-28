@@ -31,7 +31,7 @@ class MakeEmail(object):
         except Exception, exc:
             sys.exit( "mail failed; %s" % str(exc) ) # give an error message
 
-with open('../sample-schedule.json') as data_file:
+with open('../schedule.json') as data_file:
     f = data_file
     data = json.load(data_file)[0]
 
