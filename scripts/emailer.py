@@ -30,11 +30,10 @@ class MakeEmail(object):
         except Exception, exc:
             sys.exit( "mail failed; %s" % str(exc) ) # give an error message
 
-with open('../sample-schedule.json') as data_file:
-    f = data_file
-    data = json.load(data_file)[0]
+def send(schedule):
+    data = schedule[0]
 
-alert = MakeEmail('smtp.gmail.com',data['email'],'remindify.bot@gmail.com','def_hacks()','Clyde Sinclair Says...','>>> '+data['message']+' <<<'+'\n'*6+"""
+    alert = MakeEmail('smtp.gmail.com',data['email'],'remindify.bot@gmail.com','def_hacks()','Clyde Sinclair Says...','>>> '+data['message']+' <<<'+'\n'*6+"""
                                                                   .$            
                                                             ..+MM$7MMD          
                                                     .M7. .M777777777M7I         
@@ -78,4 +77,4 @@ alert = MakeEmail('smtp.gmail.com',data['email'],'remindify.bot@gmail.com','def_
                      ..                                                         
 """)
 
-alert.send_email()
+    alert.send_email()

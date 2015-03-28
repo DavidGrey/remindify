@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import json
 import os.path
+from scripts import emailer
 
 SCHEDULE_FILE = "schedule.json"
 
@@ -42,9 +43,11 @@ def addevent():
 
 @app.route("/email", methods=["GET", "POST"])
 def email():
-    return render_template("message.html", title="Error",
-                           header="Not implemented yet!",
-                           message="Sorry, we haven't implemented email yet.")
+    with open(SCHEDULE_FILE, "r") as schedule:
+        emailer.send(json.load(schedule)) # that was painless
+    return render_template("message.html", title="Email Sent",
+                           header="Reminder sent!",
+                           message="We just sent a reminder for the last event you have.")
 
 if __name__ == "__main__":
     app.debug = True
