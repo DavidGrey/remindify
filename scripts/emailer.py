@@ -1,3 +1,5 @@
+import json
+
 class MakeEmail(object):
     def __init__(self, SMTPserver, destination, USERNAME, PASSWORD, subject, content):
         self.SMTPserver = SMTPserver
@@ -29,6 +31,10 @@ class MakeEmail(object):
         except Exception, exc:
             sys.exit( "mail failed; %s" % str(exc) ) # give an error message
 
-alert = MakeEmail('smtp.gmail.com','davidgreydanus@gmail.com','remindify.bot@gmail.com','def_hacks()','ALERT','Dont forget to sleep!!!!')
+with open('../sample-schedule.json') as data_file:
+    f = data_file
+    data = json.load(data_file)[0]
+
+alert = MakeEmail('smtp.gmail.com',data['email'],'remindify.bot@gmail.com','def_hacks()','ALERT',data['message'])
 
 alert.send_email()
