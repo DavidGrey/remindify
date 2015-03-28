@@ -1,12 +1,9 @@
 [
     {
-        name: "party",
-        location: "my place",
-        datetime: "as;dhfhjlasldf"
-    },
-    {
-        name: "party2",
-        location: "my place",
-        datetime: "as;dhfhjlasldf"
+        "name": "party",
+        "location": "my place",
+        "datetime": "asdhfhjlasldf",
+        "email": "davidgreydanus@gmail.com",
+        "message": "Finish by 5:00!"
     }
 ]
