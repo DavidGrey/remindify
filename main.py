@@ -11,7 +11,7 @@ def addevent_submit():
     if request.method == "GET":
         return render_template("addevent.html")
     else:
-        return "Submitted event called '{}'.".format(request.form["name"])
+        return render_template("submitevent.html", name=request.form["name"])
 
 if __name__ == "__main__":
     app.debug = True
