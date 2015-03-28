@@ -1,12 +1,12 @@
 {% extends "index.html" %}
 
 {% block header %}
-<title>Event Submitted - Remindify</title>
+<title>{{ title }} - Remindify</title>
 {% endblock %}
 
 {% block content %}
-<h1>Event submitted!</h1>
-<p>{{ name }} has been submitted!</p>
+<h1>{{ header }}</h1>
+<p>{{ message }}</p>
 <a role="button" class="btn btn-default btn-lg btn-success" href="/">
   <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
   Return to Calendar

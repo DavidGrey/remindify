@@ -23,6 +23,7 @@ def addevent():
         event["datetime"] = request.form["date"] + " " + request.form["time"]
         event["email"] = request.form["email"]
         event["message"] = request.form["message"]
+        event["remindme"] = request.form["remindme"]
         
         data = []
         if os.path.isfile(SCHEDULE_FILE):
@@ -34,7 +35,16 @@ def addevent():
         with open(SCHEDULE_FILE, "w") as schedule:
             json.dump(data, schedule)
             
-        return render_template("submitevent.html", name=request.form["name"])
+        return render_template("message.html", title="Event Submitted",
+                               header="Event Submitted!",
+                               message=(request.form["name"] +
+                                        " has been submitted!"))
+
+@app.route("/email", methods=["GET", "POST"])
+def email():
+    return render_template("message.html", title="Error",
+                           header="Not implemented yet!",
+                           message="Sorry, we haven't implemented email yet.")
 
 if __name__ == "__main__":
     app.debug = True
