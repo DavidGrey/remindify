@@ -30,3 +30,5 @@ class MakeEmail(object):
             sys.exit( "mail failed; %s" % str(exc) ) # give an error message
 
 alert = MakeEmail('smtp.gmail.com','davidgreydanus@gmail.com','remindify.bot@gmail.com','def_hacks()','ALERT','Dont forget to sleep!!!!')
+
+alert.send_email()
