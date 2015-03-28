@@ -25,7 +25,6 @@ class MakeEmail(object):
             conn.login(self.USERNAME, self.PASSWORD)
             try:
                 conn.sendmail(sender, self.destination, msg.as_string())
-                print("Sending")
             finally:
                 conn.close()
         except Exception, exc:
