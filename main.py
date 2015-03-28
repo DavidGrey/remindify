@@ -8,7 +8,7 @@ def index():
     return render_template("index.html")
 
 @app.route("/addevent", methods=["GET", "POST"])
-def addevent_submit():
+def addevent():
     if request.method == "GET":
         return render_template("addevent.html")
     else:
@@ -21,10 +21,11 @@ def addevent_submit():
         event["email"] = request.form["email"]
         event["message"] = request.form["message"]
         
-        data = dict()
+        data = []
         with open("schedule.json", "r+") as schedule:
             data = json.load(schedule)
-            data += [event]
+
+        data += [event]
 
         with open("schedule.json", "w") as schedule:
             json.dump(data, schedule)
