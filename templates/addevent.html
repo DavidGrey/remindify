@@ -18,7 +18,6 @@
       $(document).ready(function(){
           $('#datepicker').datepicker({
           });
-          console.log("Yo");
       });
     </script>
 {% endblock %}
@@ -36,11 +35,24 @@
           <td><input type="text" class="form-control" name="location" /></td>
         </tr>
         <tr>
-        <td>Time/date:</td>
-        <td>
-          <input type="text" name="date" id="datepicker" class="form-control" required="true">
-        </td>
+          <td>Time/date:</td>
+          <td>
+            <input type="text" name="date" id="datepicker" class="form-control" required="true">
+          </td>
         </tr>
+        <tr>
+          <td>Time:</td>
+          <td>
+            <input type="text" name="time" class="form-control" required="true" />
+          </td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td><input type="email" name="email" class="form-control" required="true" />
+        </tr>
+        <tr>
+          <td>Message:</td>
+          <td><textarea class="form-control" name="message"></textarea></td>
         <tr>
           <td colspan="2">
             <input class="btn btn-default btn-success" type="submit" name="submit" />
