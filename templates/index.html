@@ -8,16 +8,22 @@
     </script> 
     {% block header %}
     <title>Remindify</title>
+    {% endblock %}
     <script type="text/javascript">
-      // LOADING STATE FOR THE SEND EMAIL BUTTON
       $(document).ready(function(){
-          $("#send-email").removeAttr("disabled");
-          $("#send-email").click(function() {
-              $(this).text("Sending...").attr("disabled", "disabled");
+          $("a").each(function(index, element) {
+              if($(element).text().contains("Fork me on GitHub") ||
+                 $(element).text().contains("Cancel")) return;
+              $(element).removeAttr("disabled");
+              $(element).click(function() {$(this).text("Loading...")
+                                               .attr("disabled", "disabled");});
           });
       });
     </script>
-    {% endblock %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
+    <![endif]--> 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
     <link type="text/css" href="../static/css/style.css" rel="stylesheet" />
     <link rel="shortcut icon" href="../static/images/Mini.png" type="image/png" />
@@ -32,6 +38,11 @@
         </div>
       </div>
     </nav>
+    <div class="github-fork-ribbon-wrapper right">
+      <div class="github-fork-ribbon">
+        <a href="https://github.com/DavidGrey/remindify">Fork me on GitHub</a>
+        </div>
+    </div>
     <div id="content">
       {% block content %}
       <a role="button" class="btn btn-default btn-lg btn-success" href="/addevent">
