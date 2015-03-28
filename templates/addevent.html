@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
+{% extends "index.html" %}
+
+{% block header %}
     <title>Add Event - Remindify</title>
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" media="screen" href="../static/css/bootstrap-datetimepicker.min.css" />
@@ -22,8 +21,9 @@
         language: 'en'
       });});
     </script>
-  </head>
-  <body>
+{% endblock %}
+
+{% block content %}
     <h1>Add Event</h1>
     <form action="/addevent" method="post">
       <table>
@@ -54,5 +54,4 @@
         </tr>
       </table>
     </form>
-  </body>
-</html>
+{% endblock %}
