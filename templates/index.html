@@ -19,15 +19,17 @@
         </div>
       </div>
     </nav>
-    {% block content %}
-    <a role="button" class="btn btn-default btn-lg btn-success" href="/addevent">
-      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-      Add Event
-    </a>
-    <a role="button" class="btn btn-default btn-lg btn-primary" href="/email">
-      <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-      Send Email
-    </a>
-    {% endblock %}
+    <div id="content">
+      {% block content %}
+      <a role="button" class="btn btn-default btn-lg btn-success" href="/addevent">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Add Event
+      </a>
+      <a role="button" class="btn btn-default btn-lg btn-primary" href="/email">
+        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+        Send Email
+      </a>
+      {% endblock %}
+    </div>
   </body>
 </html>
