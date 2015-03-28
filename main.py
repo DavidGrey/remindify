@@ -6,5 +6,10 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route("/addevent")
+def addevent():
+    return render_template("addevent.html")
+
 if __name__ == "__main__":
+    app.debug = True
     app.run()
