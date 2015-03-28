@@ -6,9 +6,9 @@
 
 {% block content %}
 <h1>{{ header }}</h1>
-<p>{{ message }}</p>
+<p>{{ message|safe }}</p>
 <a role="button" class="btn btn-default btn-lg btn-success" href="/">
   <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-  Return to Calendar
+  Return to Homepage
 </a>
 {% endblock %}

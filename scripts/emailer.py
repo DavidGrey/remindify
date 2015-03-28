@@ -32,8 +32,10 @@ class MakeEmail(object):
 
 def send(schedule):
     data = schedule[0]
+    themessage = "Don't miss " + data["name"] + " at " + data["location"] +\
+                 " on " + data["datetime"] + "! " + data["message"]
 
-    alert = MakeEmail('smtp.gmail.com',data['email'],'remindify.bot@gmail.com','def_hacks()','Clyde Sinclair Says...','>>> '+data['message']+' <<<'+'\n'*6+"""
+    alert = MakeEmail('smtp.gmail.com',data['email'],'remindify.bot@gmail.com','def_hacks()','Clyde Sinclair Says...','>>> '+themessage+' <<<'+'\n'*6+"""
                                                                   .$            
                                                             ..+MM$7MMD          
                                                     .M7. .M777777777M7I         
