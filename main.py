@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", calendar=get_calendar_html())
 
 @app.route("/addevent", methods=["GET", "POST"])
 def addevent():
@@ -57,6 +57,11 @@ def list():
     with open(SCHEDULE_FILE, "r") as schedule:
         data = json.load(schedule)
 
+    if len(data) == 0:
+        return render_template("message.html", title="Events List",
+                               header="Unable to list events",
+                               message="There aren't any events to list!")
+
     result = "<ul>"
 
     for event in data:
@@ -69,12 +74,11 @@ def list():
                            header="List of Events",
                            message=result)
 
-@app.route("/calendar")
-def calendar():
+def get_calendar_html():
     with open(SCHEDULE_FILE, "r") as schedule:
         data = json.load(schedule)
 
-    result = "<table><tr>"
+    result = "<table><tr><td></td>"
 
     def iter_hours(start, end, delta):
         while start < end:
@@ -90,21 +94,31 @@ def calendar():
 
     # EVENTS
     def event_to_datetime(event):
-        return datetime(*pdt.Calendar(pdt.Constants()).parse(event["datetime"]))
+        return datetime(*(pdt.Calendar(pdt.Constants()).parse(event["datetime"])[0][:6]))
+    DAYS = [ 
+              'Monday', 
+              'Tuesday', 
+              'Wednesday', 
+              'Thursday',  
+              'Friday', 
+              'Saturday',
+        'Sunday']
     for day_of_week in range(7):
         events_today = [x for x in data if event_to_datetime(x).weekday() == day_of_week]
-        result += "<tr>"
+        result += "<tr><td>{}</td>".format(DAYS[day_of_week])
         for date in iter_hours(roundTime(datetime.now(), 60*60),
                                roundTime(datetime.now(), 60*60) + timedelta(days=1),
                                timedelta(hours=1)):
-            result += "<td>alsdfasdfasd</td>"
+            this_hour = ""
+            for event in events_today:
+                if event_to_datetime(event).hour == date.hour:
+                    this_hour += event["name"]
+            result += "<td>{}</td>".format(this_hour)
         result += "</tr>"
             
 
     result += "</table>"
-    return render_template("message.html", title="Calendar",
-                           header="Calendar",
-                           message=result)
+    return result
 
 def roundTime(dt=None, roundTo=60):
    """Round a datetime object to any time laps in seconds

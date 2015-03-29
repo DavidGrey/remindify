@@ -1,5 +1,5 @@
 body {
-    width: 50%;
+    width: 80%;
     margin: 0 auto;
     background-image: url(../images/Background2.png);
 }
@@ -8,4 +8,8 @@ body {
     background-color: rgba(255, 255, 255, 0.6);
     padding: 5px;
     border-radius: 5px;
+}
+
+table td {
+    border: 1px solid gray;
 }
